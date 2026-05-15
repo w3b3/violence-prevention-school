@@ -1,51 +1,68 @@
-# La santé sexuelle positive — tableau interactif
+# La santé sexuelle positive · Positive sexual health
 
-Page web mobile-friendly et inclusive pour ados — affiche les ressources de prévention et de soutien en santé sexuelle au Nouveau-Brunswick sous forme de tableau interactif (bento board), avec lignes d'écoute, services et liens éducatifs.
+Bilingual (FR / EN) mobile-friendly single-page board displaying sexual-violence prevention and support resources for teens in New Brunswick — adapted from the *La santé sexuelle positive pour les parents* flyer by the Comité pour une éducation à la sexualité positive et inclusive, District scolaire francophone Sud, 2026.
 
-Adapté du dépliant *La santé sexuelle positive pour les parents* — Comité pour une éducation à la sexualité positive et inclusive, District scolaire francophone Sud, 2026.
+Hosted at:
 
-## Aperçu
+- 🇫🇷 [violence-sexuelle.dieppe.app](https://violence-sexuelle.dieppe.app)
+- 🇬🇧 [sexual-violence.dieppe.app](https://sexual-violence.dieppe.app)
+
+Both URLs serve the same `index.html`; the page auto-selects the language from the hostname (and respects `?lang=fr|en`, the FR/EN toggle, and `localStorage`).
+
+## Preview
 
 ### Logo
 
 ![Logo](screenshots/logo.png)
 
-### Desktop
+### Desktop — Français
 
-![Desktop](screenshots/desktop.png)
+![Desktop FR](screenshots/desktop.png)
 
-### Mobile
+### Desktop — English
 
-![Mobile](screenshots/mobile.png)
+![Desktop EN](screenshots/desktop-english.png)
 
-## Caractéristiques
+### Mobile — Français
 
-- **Bannière d'urgence** persistante (sticky) — un clic pour appeler le ministère du Développement social
-- **Filtres** par catégorie : urgence, lignes d'écoute, services, info, 2ELGBTQIA+
-- **Cartes dépliables** — chaque carte révèle les numéros et liens utiles
-- **Liens `tel:` partout** — composer un numéro depuis mobile en un tap
-- **Mobile-first** — grille bento qui se replie en colonne unique sous 760px
-- **Palette pastel** reprise du dépliant original : rose, lilas, pêche, menthe, crème
-- **Typographie distinctive** : *Caprasimo* (display) + *Nunito* (corps)
-- **Respecte `prefers-reduced-motion`**
+![Mobile FR](screenshots/mobile.png)
 
-## Fichiers
+### Mobile — English
 
-| Fichier | Description |
+![Mobile EN](screenshots/mobile-english.png)
+
+## Features
+
+- **Sticky emergency banner** — one tap to call the Ministry of Social Development
+- **Category filters** — emergency, helplines, services, info, 2SLGBTQIA+
+- **Expandable cards** — each reveals the relevant numbers and links
+- **`tel:` everywhere** — call from mobile in one tap
+- **Bilingual (FR / EN)** — toggle in header & footer; hostname-based default
+- **Mobile-first** — bento grid collapses to single column under 760px
+- **Pastel palette** taken from the original flyer
+- **Distinctive typography** — *Caprasimo* (display) + *Nunito* (body)
+- **Respects `prefers-reduced-motion`**
+
+## Files
+
+| File | Description |
 | --- | --- |
-| `index.html` | Page unique, autoportante (aucun build) |
-| `logo.svg` | Logo complet avec wordmark |
-| `favicon.svg` | Favicon vectoriel |
-| `favicon-32.png` | Fallback 32×32 |
-| `apple-touch-icon.png` | Icône iOS 180×180 |
-| `screenshots/` | Captures d'écran |
+| `index.html` | Single-page, self-contained (no build step) |
+| `CNAME` | GitHub Pages custom domain |
+| `logo.svg` | Full logo with wordmark |
+| `favicon.svg` | Vector favicon |
+| `favicon-32.png` | 32×32 raster fallback |
+| `apple-touch-icon.png` | iOS 180×180 icon |
+| `screenshots/` | Preview images |
 
-## Utilisation
+## Usage
 
-Ouvrir `index.html` dans un navigateur — c'est tout. Aucune dépendance, aucun serveur requis.
+Open `index.html` in any browser — no server required.
 
 ```bash
 open index.html
+# or with explicit language:
+open "index.html?lang=en"
 ```
 
-Pour héberger : déposer le dossier complet sur n'importe quel hébergeur statique (GitHub Pages, Cloudflare Pages, Netlify).
+Deploys to any static host (GitHub Pages, Cloudflare Pages, Netlify).
