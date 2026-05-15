@@ -772,8 +772,24 @@
     } catch (e) {}
     return (navigator.language || 'fr').toLowerCase().startsWith('en') ? 'en' : 'fr';
   }
+  const LANG_HOSTS = {
+    fr: 'violence-sexuelle.dieppe.app',
+    en: 'sexual-violence.dieppe.app'
+  };
   document.querySelectorAll('.lang-switch button').forEach(btn => {
-    btn.addEventListener('click', () => applyLang(btn.dataset.setLang));
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.setLang;
+      if (target === document.documentElement.lang) return;
+      const host = location.hostname;
+      const targetHost = LANG_HOSTS[target];
+      // Navigate to sister domain if we're on a public host (and not already on the target)
+      if ((host === LANG_HOSTS.fr || host === LANG_HOSTS.en) && host !== targetHost) {
+        try { localStorage.setItem('lang', target); } catch (e) {}
+        location.href = location.protocol + '//' + targetHost + location.pathname + location.search + location.hash;
+        return;
+      }
+      applyLang(target);
+    });
   });
   applyLang(detectInitialLang());
 </script>
