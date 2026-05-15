@@ -128,6 +128,23 @@
     color: var(--ink-soft);
   }
   .lede strong { color: var(--ink); }
+  .url-pill {
+    margin: 18px 0 0;
+  }
+  .url-pill a {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 16px; border-radius: 999px;
+    background: rgba(255,255,255,.7);
+    border: 1.5px solid var(--ink);
+    font-family: "Nunito", monospace; font-weight: 800; font-size: 13px;
+    color: var(--ink); text-decoration: none;
+    letter-spacing: .02em;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .url-pill a::before {
+    content: "🔗"; font-size: 14px;
+  }
+  .url-pill a:hover { transform: translateY(-2px); background: #fff; }
 
   /* ========== FILTER CHIPS ========== */
   .chips {
@@ -350,6 +367,7 @@
   <span class="eyebrow">💛 ressources santé & sécurité</span>
   <h1>La santé sexuelle <span class="squiggle">positive</span>,<br>c'est pour toi.</h1>
   <p class="lede">Un tableau interactif. <strong>Touche une carte</strong> pour découvrir les ressources, les lignes d'écoute 24/7 et les services près de chez toi — au Nouveau-Brunswick.</p>
+  <p class="url-pill"><a href="https://violence-sexuelle.dieppe.app">violence-sexuelle.dieppe.app</a></p>
 </header>
 
 <nav class="chips" aria-label="Filtres">
@@ -596,6 +614,9 @@
 
 <footer>
   <span class="seal">Conçu par le Comité pour une éducation à la sexualité positive et inclusive — District scolaire francophone Sud · 2026</span>
+  <p style="margin-top:14px;">
+    <a href="https://violence-sexuelle.dieppe.app" style="color:var(--ink); font-weight:800; text-decoration:underline; text-underline-offset:3px;">violence-sexuelle.dieppe.app</a>
+  </p>
 </footer>
 
 <script>
