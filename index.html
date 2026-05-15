@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#f7d6d1" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="alternate icon" href="favicon-32.png">
+<title>La santé sexuelle positive — un tableau pour toi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink:    #f7d6d1;
+    --pink-2:  #f1b9b1;
+    --lilac:   #d9cbe6;
+    --lilac-2: #c0a9d8;
+    --peach:   #f4cdb1;
+    --peach-2: #e8a87a;
+    --mint:    #c8e3dc;
+    --mint-2:  #9ec8be;
+    --cream:   #fbf3ec;
+    --ink:     #3a2a4a;
+    --ink-soft:#5a4a6a;
+    --rose:    #d65a6a;
+    --line:    rgba(58,42,74,.12);
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin:0; padding:0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Nunito", system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(900px 600px at 8% -5%, rgba(247,214,209,.85), transparent 60%),
+      radial-gradient(800px 500px at 105% 10%, rgba(217,203,230,.75), transparent 55%),
+      radial-gradient(700px 600px at 110% 90%, rgba(244,205,177,.65), transparent 60%),
+      radial-gradient(900px 700px at -10% 95%, rgba(200,227,220,.75), transparent 55%),
+      var(--cream);
+    background-attachment: fixed;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  /* tiny floaty doodles */
+  body::before {
+    content:"";
+    position: fixed; inset:0;
+    background-image:
+      radial-gradient(circle at 12% 22%, rgba(58,42,74,.06) 1.5px, transparent 2px),
+      radial-gradient(circle at 78% 38%, rgba(58,42,74,.05) 1.5px, transparent 2px),
+      radial-gradient(circle at 42% 88%, rgba(58,42,74,.06) 1.5px, transparent 2px);
+    background-size: 360px 360px, 480px 480px, 520px 520px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ========== EMERGENCY BANNER ========== */
+  .alarm {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(90deg, rgba(214,90,106,.95), rgba(193,70,86,.95));
+    color: #fff8f6;
+    padding: 10px 16px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    font-weight: 700; font-size: 14px;
+    box-shadow: 0 8px 20px -10px rgba(214,90,106,.5);
+  }
+  .alarm a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+  .alarm .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #fff;
+    box-shadow: 0 0 0 0 rgba(255,255,255,.7);
+    animation: pulse 1.6s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,255,255,.7); }
+    70% { box-shadow: 0 0 0 12px rgba(255,255,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  }
+
+  /* ========== HERO ========== */
+  header.hero {
+    position: relative; z-index: 1;
+    padding: 56px 22px 24px;
+    max-width: 1200px; margin: 0 auto;
+    text-align: center;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 999px;
+    background: rgba(255,255,255,.55);
+    border: 1px solid var(--line);
+    font-weight: 700; letter-spacing: .12em; font-size: 11px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .eyebrow .heart {
+    width: 14px; height: 14px; display:inline-block;
+    background: var(--rose); -webkit-mask: var(--mask-heart) center/contain no-repeat;
+            mask: var(--mask-heart) center/contain no-repeat;
+  }
+  h1 {
+    font-family: "Caprasimo", "Fraunces", serif;
+    font-weight: 400;
+    font-size: clamp(32px, 8.5vw, 84px);
+    overflow-wrap: break-word;
+    line-height: .98;
+    margin: 18px 0 10px;
+    letter-spacing: -.01em;
+  }
+  h1 .squiggle {
+    display: inline-block;
+    background: linear-gradient(120deg, var(--rose), var(--lilac-2) 60%, var(--peach-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    position: relative;
+  }
+  h1 .squiggle::after{
+    content:""; position:absolute; left:6%; right:6%; bottom:-6px; height:10px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10'><path d='M2 6 Q 12 -2 22 6 T 42 6 T 62 6 T 82 6 T 102 6 T 118 6' fill='none' stroke='%23d65a6a' stroke-width='2' stroke-linecap='round'/></svg>") center/contain repeat-x;
+    opacity:.7;
+  }
+  .lede {
+    max-width: 620px; margin: 8px auto 0;
+    font-size: clamp(15px, 2.2vw, 18px);
+    color: var(--ink-soft);
+  }
+  .lede strong { color: var(--ink); }
+
+  /* ========== FILTER CHIPS ========== */
+  .chips {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 22px auto 6px;
+    padding: 0 16px;
+    display:flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  }
+  .chip {
+    appearance: none; border: 1.5px solid var(--ink); background: transparent;
+    color: var(--ink); font: 700 13px/1 "Nunito", sans-serif;
+    padding: 10px 14px; border-radius: 999px; cursor: pointer;
+    transition: transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .chip:hover { transform: translateY(-2px); }
+  .chip[aria-pressed="true"] {
+    background: var(--ink); color: var(--cream);
+  }
+
+  /* ========== BOARD ========== */
+  main.board {
+    position: relative; z-index: 1;
+    max-width: 1200px;
+    margin: 18px auto 60px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 14px;
+  }
+  .card {
+    position: relative;
+    grid-column: span 12;
+    border-radius: 26px;
+    padding: 22px 22px 20px;
+    border: 1.5px solid var(--ink);
+    box-shadow: 6px 8px 0 0 var(--ink);
+    transition: transform .25s cubic-bezier(.2,.7,.2,1.2), box-shadow .25s;
+    overflow: hidden;
+    isolation: isolate;
+    opacity: 0;
+    transform: translateY(14px) rotate(var(--tilt, 0deg));
+    animation: rise .7s forwards;
+    animation-delay: var(--delay, 0s);
+  }
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0) rotate(var(--tilt, 0deg)); }
+  }
+  .card:hover {
+    transform: translateY(-4px) rotate(var(--tilt, 0deg));
+    box-shadow: 8px 12px 0 0 var(--ink);
+  }
+  .card.hidden { display: none; }
+
+  /* color variants */
+  .c-pink   { background: var(--pink); }
+  .c-lilac  { background: var(--lilac); }
+  .c-peach  { background: var(--peach); }
+  .c-mint   { background: var(--mint); }
+  .c-cream  { background: #fdebd9; }
+
+  .card .tag {
+    display: inline-block; font-weight: 800; letter-spacing: .12em;
+    text-transform: uppercase; font-size: 11px;
+    padding: 5px 10px; border-radius: 999px;
+    background: rgba(58,42,74,.08);
+    color: var(--ink-soft);
+  }
+  .card h2 {
+    font-family: "Caprasimo", "Fraunces", serif;
+    font-weight: 400;
+    font-size: clamp(22px, 3.4vw, 30px);
+    line-height: 1.05;
+    margin: 12px 0 8px;
+    letter-spacing: -.005em;
+  }
+  .card p.intro {
+    font-size: 15px; margin: 0 0 14px; color: var(--ink-soft);
+  }
+  .card .icon {
+    position: absolute; top: 16px; right: 16px;
+    width: 46px; height: 46px;
+    display: grid; place-items: center;
+    background: rgba(255,255,255,.55);
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    font-size: 22px;
+  }
+
+  /* expandable content */
+  .reveal {
+    max-height: 0; overflow: hidden;
+    transition: max-height .45s ease;
+  }
+  .card[aria-expanded="true"] .reveal {
+    max-height: 1600px;
+  }
+  .reveal-inner {
+    padding-top: 6px;
+    border-top: 1.5px dashed rgba(58,42,74,.25);
+    margin-top: 8px;
+  }
+
+  .resource {
+    display:flex; flex-direction: column; gap:2px;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(58,42,74,.18);
+  }
+  .resource:last-child { border-bottom: none; }
+  .resource .name { font-weight: 800; }
+  .resource .meta { font-size: 13px; color: var(--ink-soft); }
+  .resource a.tel {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 6px; align-self: flex-start;
+    background: var(--ink); color: var(--cream);
+    padding: 8px 12px; border-radius: 999px;
+    font-weight: 800; font-size: 13px; text-decoration: none;
+    transition: transform .12s ease;
+  }
+  .resource a.tel:hover { transform: scale(1.04); }
+  .resource a.tel::before {
+    content:""; width:12px; height:12px;
+    background: var(--cream);
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M6.6 10.8a15.3 15.3 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.3 0 .7-.3 1Z'/></svg>") center/contain no-repeat;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M6.6 10.8a15.3 15.3 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.3 0 .7-.3 1Z'/></svg>") center/contain no-repeat;
+  }
+  .resource a.link {
+    margin-top: 6px; align-self: flex-start;
+    color: var(--ink); font-weight: 800; text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .expand-btn {
+    margin-top: 10px;
+    appearance: none; border: 1.5px solid var(--ink);
+    background: rgba(255,255,255,.55);
+    color: var(--ink); font: 800 13px/1 "Nunito", sans-serif;
+    padding: 10px 14px; border-radius: 999px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background .2s;
+  }
+  .expand-btn:hover { background: #fff; }
+  .expand-btn .chev {
+    width: 10px; height: 10px;
+    border-right: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    transform: rotate(45deg);
+    transition: transform .3s;
+  }
+  .card[aria-expanded="true"] .expand-btn .chev { transform: rotate(-135deg); }
+
+  /* grid spans on desktop — bento */
+  @media (min-width: 760px) {
+    .card.span-6 { grid-column: span 6; }
+    .card.span-7 { grid-column: span 7; }
+    .card.span-5 { grid-column: span 5; }
+    .card.span-4 { grid-column: span 4; }
+    .card.span-8 { grid-column: span 8; }
+    .card.span-12 { grid-column: span 12; }
+  }
+
+  /* youth QR card special */
+  .qr-card {
+    background: linear-gradient(135deg, #fdebd9, #f7d6d1);
+    display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+  }
+  .qr-card .qr {
+    width: 110px; height: 110px;
+    background: #fff; border: 1.5px solid var(--ink); border-radius: 16px;
+    display: grid; place-items: center;
+    font-family: "Caprasimo", serif; font-size: 12px; color: var(--ink-soft);
+    text-align: center; padding: 10px;
+  }
+  @media (max-width: 480px) {
+    .qr-card { grid-template-columns: 1fr; text-align: center; }
+    .qr-card .qr { margin: 0 auto; }
+  }
+
+  /* footer */
+  footer {
+    position: relative; z-index: 1;
+    text-align: center; padding: 30px 20px 60px;
+    color: var(--ink-soft); font-size: 13px;
+  }
+  footer .seal {
+    display:inline-block; padding: 8px 14px; border-radius: 999px;
+    background: rgba(255,255,255,.55); border: 1px solid var(--line);
+  }
+
+  /* floaty stickers */
+  .sticker {
+    position: absolute; font-size: 22px; opacity: .85;
+    animation: bob 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes bob {
+    0%,100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-8px) rotate(8deg); }
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--rose); outline-offset: 3px; border-radius: 14px;
+  }
+
+  /* reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Emergency line, always visible -->
+<div class="alarm" role="alert">
+  <span class="dot" aria-hidden="true"></span>
+  <span>Tu soupçonnes qu'un enfant est en danger&nbsp;?</span>
+  <a href="tel:+18337337835">Appelle&nbsp;1&nbsp;833&nbsp;733&nbsp;7835</a>
+</div>
+
+<header class="hero">
+  <span class="eyebrow">💛 ressources santé & sécurité</span>
+  <h1>La santé sexuelle <span class="squiggle">positive</span>,<br>c'est pour toi.</h1>
+  <p class="lede">Un tableau interactif. <strong>Touche une carte</strong> pour découvrir les ressources, les lignes d'écoute 24/7 et les services près de chez toi — au Nouveau-Brunswick.</p>
+</header>
+
+<nav class="chips" aria-label="Filtres">
+  <button class="chip" data-filter="all" aria-pressed="true">Tout ✨</button>
+  <button class="chip" data-filter="urgence" aria-pressed="false">Urgence 🆘</button>
+  <button class="chip" data-filter="ecoute" aria-pressed="false">Lignes d'écoute 📞</button>
+  <button class="chip" data-filter="services" aria-pressed="false">Services 🤝</button>
+  <button class="chip" data-filter="info" aria-pressed="false">Info & éducation 📚</button>
+  <button class="chip" data-filter="2slgbtq" aria-pressed="false">2ELGBTQIA+ 🌈</button>
+</nav>
+
+<main class="board" id="board">
+
+  <!-- SANE -->
+  <article class="card c-peach span-6" data-cats="urgence services" style="--delay:.05s; --tilt:-.4deg;" aria-expanded="false">
+    <div class="icon" aria-hidden="true">🩺</div>
+    <span class="tag">Urgence · hôpital</span>
+    <h2>Programme SANE</h2>
+    <p class="intro"><em>Sexual Assault Nurse Examiner</em> — une infirmière formée t'accueille à l'urgence.</p>
+    <button class="expand-btn" aria-controls="r-sane">En savoir plus <span class="chev"></span></button>
+    <div class="reveal" id="r-sane">
+      <div class="reveal-inner">
+        <p>Si tu es victime de violence sexuelle ou conjugale, tu peux te présenter à <strong>l'urgence</strong> et demander à voir l'infirmière SANE. Elle t'offrira du soutien et un examen médicolégal.</p>
+        <p><strong>Pas besoin</strong> de signaler à la police, ni de donner une raison pour obtenir des services.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- Centres d'appui -->
+  <article class="card c-pink span-6" data-cats="services urgence" style="--delay:.1s; --tilt:.3deg;" aria-expanded="false">
+    <div class="icon" aria-hidden="true">🏠</div>
+    <span class="tag">Centres d'appui</span>
+    <h2>Enfants & jeunesse</h2>
+    <p class="intro">Un seul endroit pour les examens, la thérapie, l'aide sociale, le juridique et la défense des droits.</p>
+    <button class="expand-btn" aria-controls="r-cae">Voir les centres <span class="chev"></span></button>
+    <div class="reveal" id="r-cae">
+      <div class="reveal-inner">
+        <div class="resource">
+          <span class="name">Centre Boréal</span>
+          <span class="meta">Dieppe</span>
+          <a class="tel" href="tel:+15063838300">506 383-8300</a>
+        </div>
+        <div class="resource">
+          <span class="name">Kit's Place — Family Plus</span>
+          <span class="meta">Saint-Jean · site en anglais, services offerts en français</span>
+          <a class="tel" href="tel:+15066348295">506 634-8295</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Lignes d'écoute -->
+  <article class="card c-lilac span-7" data-cats="ecoute urgence" style="--delay:.15s; --tilt:-.2deg;" aria-expanded="false">
+    <div class="icon" aria-hidden="true">📞</div>
+    <span class="tag">Lignes d'écoute · gratuit</span>
+    <h2>Quelqu'un pour t'écouter, à toute heure.</h2>
+    <p class="intro">Téléphone, texto ou clavardage — selon ce qui te met le plus à l'aise.</p>
+    <button class="expand-btn" aria-controls="r-lignes">Ouvrir les lignes <span class="chev"></span></button>
+    <div class="reveal" id="r-lignes">
+      <div class="reveal-inner">
+        <div class="resource">
+          <span class="name">Violence sexuelle Nouveau-Brunswick</span>
+          <span class="meta">17 h → 8 h · téléphone / clavardage / texto</span>
+          <a class="tel" href="tel:+15064540437">506 454-0437</a>
+        </div>
+        <div class="resource">
+          <span class="name">Centre Jade</span>
+          <span class="meta">Ligne de soutien 24/7</span>
+          <a class="tel" href="tel:+18448530811">1 844 853-0811</a>
+        </div>
+        <div class="resource">
+          <span class="name">Santé mentale GNB</span>
+          <span class="meta">Ligne de soutien 24/7</span>
+          <a class="tel" href="tel:+18663555550">1 866 355-5550</a>
+        </div>
+        <div class="resource">
+          <span class="name">Espoir pour le mieux-être</span>
+          <span class="meta">24/7 · personnes autochtones · téléphone / clavardage</span>
+          <a class="tel" href="tel:+18552423310">1 855 242-3310</a>
+        </div>
+        <div class="resource">
+          <span class="name">Femmes et filles autochtones disparues et assassinées</span>
+          <span class="meta">Ligne de soutien 24/7</span>
+          <a class="tel" href="tel:+18444136649">1 844 413-6649</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Éducation & prévention -->
+  <article class="card c-mint span-5" data-cats="info" style="--delay:.2s; --tilt:.4deg;" aria-expanded="false">
+    <div class="icon" aria-hidden="true">📚</div>
+    <span class="tag">Éducation & prévention</span>
+    <h2>Apprends, à ton rythme.</h2>
+    <p class="intro">Trois ressources pour décortiquer sexualité, consentement et vie en ligne.</p>
+    <button class="expand-btn" aria-controls="r-edu">Voir les sites <span class="chev"></span></button>
+    <div class="reveal" id="r-edu">
+      <div class="reveal-inner">
+        <div class="resource">
+          <span class="name">Cyberaide.ca</span>
+          <span class="meta">Signalement et soutien · exploitation sexuelle en ligne</span>
+          <a class="link" href="https://cyberaide.ca" target="_blank" rel="noopener">cyberaide.ca ↗</a>
+        </div>
+        <div class="resource">
+          <span class="name">On SEXplique ça</span>
+          <span class="meta">Capsules vidéo qui parlent vrai</span>
+          <a class="link" href="https://onsexpliqueca.com" target="_blank" rel="noopener">onsexpliqueca.com ↗</a>
+        </div>
+        <div class="resource">
+          <span class="name">Enfants avertis</span>
+          <span class="meta">Sécurité personnelle pour jeunes & familles</span>
+          <a class="link" href="https://enfantsavertis.ca" target="_blank" rel="noopener">enfantsavertis.ca ↗</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Services communautaires -->
+  <article class="card c-lilac span-8" data-cats="services" style="--delay:.25s; --tilt:-.3deg;" aria-expanded="false">
+    <div class="icon" aria-hidden="true">🤝</div>
+    <span class="tag">Services communautaires</span>
+    <h2>Counseling gratuit, sans jugement.</h2>
+    <p class="intro">Pour les survivant·es de violence sexuelle de <strong>16 ans et plus</strong> — et du soutien pour les parents.</p>
+    <button class="expand-btn" aria-controls="r-svc">Trouver près de moi <span class="chev"></span></button>
+    <div class="reveal" id="r-svc">
+      <div class="reveal-inner">
+        <div class="resource">
+          <span class="name">Violence sexuelle Nouveau-Brunswick</span>
+          <span class="meta">Fredericton</span>
+          <a class="tel" href="tel:+15064540460">506 454-0460</a>
+        </div>
+        <div class="resource">
+          <span class="name">Centre Jade</span>
+          <span class="meta">Dieppe</span>
+          <a class="tel" href="tel:+15062950151">506 295-0151</a>
+        </div>
+        <div class="resource">
+          <span class="name">Services Safe Harbour</span>
+          <span class="meta">Miramichi</span>
+          <a class="tel" href="tel:+15067737472">506 773-7472</a>
+        </div>
+        <div class="resource">
+          <span class="name">Family Plus</span>
+          <span class="meta">Saint-Jean · site en anglais, services en français</span>
+          <a class="tel" href="tel:+15066348295">506 634-8295</a>
+        </div>
+        <div class="resource">
+          <span class="name">Centre Océane — Centre Courage</span>
+          <span class="meta">Shédiac</span>
+          <a class="tel" href="tel:+15065339100">506 533-9100</a>
+        </div>
+        <div class="resource">
+          <span class="name">Nova — Centre de prévention de la violence</span>
+          <span class="meta">Kent</span>
+          <a class="tel" href="tel:+15067435449">506 743-5449</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- 2ELGBTQIA+ -->
+  <article class="card c-peach span-4" data-cats="2slgbtq info services" style="--delay:.3s; --tilt:.2deg;" aria-expanded="false">
+    <div class="icon" aria-hidden="true">🌈</div>
+    <span class="tag">2ELGBTQIA+</span>
+    <h2>Pour toi, telle ou tel que tu es.</h2>
+    <button class="expand-btn" aria-controls="r-lgbt">Découvrir <span class="chev"></span></button>
+    <div class="reveal" id="r-lgbt">
+      <div class="reveal-inner">
+        <div class="resource">
+          <span class="name">Wabanaki Two-Spirit Alliance</span>
+          <span class="meta">Soutien 2ELGBTQ+ autochtone · santé, éducation, développement (anglais)</span>
+          <a class="link" href="https://wabanaki2spirit.com" target="_blank" rel="noopener">wabanaki2spirit.com ↗</a>
+        </div>
+        <div class="resource">
+          <span class="name">pflag Canada</span>
+          <span class="meta">Organisme national créé par des parents de personnes 2ELGBTQIA+</span>
+          <a class="link" href="https://pflagcanada.ca" target="_blank" rel="noopener">pflagcanada.ca ↗</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Lignes d'information -->
+  <article class="card c-mint span-6" data-cats="info ecoute" style="--delay:.35s; --tilt:-.3deg;" aria-expanded="false">
+    <div class="icon" aria-hidden="true">ℹ️</div>
+    <span class="tag">Lignes d'information</span>
+    <h2>Des questions ? On a des réponses.</h2>
+    <button class="expand-btn" aria-controls="r-info">Voir les lignes <span class="chev"></span></button>
+    <div class="reveal" id="r-info">
+      <div class="reveal-inner">
+        <div class="resource">
+          <span class="name">Santé sexuelle générale</span>
+          <span class="meta">Contraception, grossesse, ITS — composer le 811</span>
+          <a class="tel" href="tel:811">811</a>
+        </div>
+        <div class="resource">
+          <span class="name">Dépistage anonyme du VIH</span>
+          <a class="tel" href="tel:+18336030499">1 833 603-0499</a>
+        </div>
+        <div class="resource">
+          <span class="name">Urgence canadienne · traite des personnes</span>
+          <a class="tel" href="tel:+18339001010">1 833 900-1010</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Guide parents -->
+  <article class="card c-pink span-6" data-cats="info services" style="--delay:.4s; --tilt:.3deg;" aria-expanded="false">
+    <div class="icon" aria-hidden="true">💞</div>
+    <span class="tag">Pour les parents</span>
+    <h2>Tu accompagnes quelqu'un qui a vécu de la violence sexuelle ?</h2>
+    <p class="intro">Un guide pratique pour t'aider à être là, sans te perdre toi-même.</p>
+    <a class="link" href="https://vsnb-svnb.ca" target="_blank" rel="noopener">Guide VSNB pour parents ↗</a>
+  </article>
+
+  <!-- QR / ressources jeunes -->
+  <article class="card qr-card span-12" data-cats="info" style="--delay:.45s; --tilt:0deg;" aria-expanded="false">
+    <div>
+      <span class="tag">Ressources pour les jeunes</span>
+      <h2>Le mini-tableau dédié aux ados.</h2>
+      <p class="intro">Scanne le code QR avec ton téléphone pour accéder à la version jeunesse de ces ressources.</p>
+      <a class="link" href="#" onclick="return false;">Demande à ton école le lien direct ↗</a>
+    </div>
+    <div class="qr" aria-hidden="true">
+      <!-- placeholder QR -->
+      <svg viewBox="0 0 100 100" width="90" height="90" role="img" aria-label="QR placeholder">
+        <rect width="100" height="100" fill="#fff"/>
+        <g fill="#3a2a4a">
+          <rect x="6" y="6" width="22" height="22"/><rect x="10" y="10" width="14" height="14" fill="#fff"/><rect x="14" y="14" width="6" height="6"/>
+          <rect x="72" y="6" width="22" height="22"/><rect x="76" y="10" width="14" height="14" fill="#fff"/><rect x="80" y="14" width="6" height="6"/>
+          <rect x="6" y="72" width="22" height="22"/><rect x="10" y="76" width="14" height="14" fill="#fff"/><rect x="14" y="80" width="6" height="6"/>
+          <rect x="34" y="10" width="4" height="4"/><rect x="42" y="10" width="4" height="4"/><rect x="50" y="14" width="4" height="4"/><rect x="58" y="10" width="4" height="4"/>
+          <rect x="10" y="36" width="4" height="4"/><rect x="18" y="40" width="4" height="4"/><rect x="34" y="36" width="4" height="4"/><rect x="42" y="40" width="4" height="4"/><rect x="50" y="36" width="4" height="4"/><rect x="58" y="40" width="4" height="4"/><rect x="66" y="36" width="4" height="4"/><rect x="74" y="40" width="4" height="4"/><rect x="82" y="36" width="4" height="4"/>
+          <rect x="14" y="48" width="4" height="4"/><rect x="22" y="52" width="4" height="4"/><rect x="34" y="48" width="4" height="4"/><rect x="46" y="52" width="4" height="4"/><rect x="54" y="48" width="4" height="4"/><rect x="62" y="52" width="4" height="4"/><rect x="78" y="48" width="4" height="4"/><rect x="86" y="52" width="4" height="4"/>
+          <rect x="38" y="60" width="4" height="4"/><rect x="46" y="64" width="4" height="4"/><rect x="58" y="60" width="4" height="4"/><rect x="70" y="64" width="4" height="4"/><rect x="82" y="60" width="4" height="4"/>
+          <rect x="38" y="80" width="4" height="4"/><rect x="46" y="84" width="4" height="4"/><rect x="58" y="80" width="4" height="4"/><rect x="66" y="84" width="4" height="4"/><rect x="78" y="80" width="4" height="4"/><rect x="86" y="84" width="4" height="4"/>
+        </g>
+      </svg>
+    </div>
+  </article>
+
+</main>
+
+<footer>
+  <span class="seal">Conçu par le Comité pour une éducation à la sexualité positive et inclusive — District scolaire francophone Sud · 2026</span>
+</footer>
+
+<script>
+  // expand/collapse cards
+  document.querySelectorAll('.card .expand-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const card = btn.closest('.card');
+      const isOpen = card.getAttribute('aria-expanded') === 'true';
+      card.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  // filters
+  const chips = document.querySelectorAll('.chip');
+  const cards = document.querySelectorAll('.card');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.setAttribute('aria-pressed','false'));
+      chip.setAttribute('aria-pressed','true');
+      const f = chip.dataset.filter;
+      cards.forEach(card => {
+        const cats = (card.dataset.cats || '').split(' ');
+        const show = f === 'all' || cats.includes(f);
+        card.classList.toggle('hidden', !show);
+      });
+    });
+  });
+</script>
+</body>
+</html>
